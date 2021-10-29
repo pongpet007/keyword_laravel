@@ -14,8 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $locale = App::currentLocale();
+    dd($locale);
     return view('welcome');
 });
+
+Route::get('/bootstrap',function (){
+    return view("bootstrap");
+}
+);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

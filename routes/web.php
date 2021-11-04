@@ -17,7 +17,11 @@ Route::get('/', function () {
     // $locale = App::currentLocale();
     // dd($locale);
     return view('admin.pages.home');
-});
+})->name('home');
+
+Route::get('/products',function(){
+    return view('admin.pages.products');
+})->name('products');
 
 Route::get('/theme',function (){
     return view("admin.theme");

@@ -48,7 +48,7 @@
             </div>
             <!-- End of Main Content -->
 
-           @include("admin.layout.footer")
+            @include("admin.layout.footer")
 
         </div>
         <!-- End of Content Wrapper -->
@@ -71,6 +71,19 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('assets_admin/js/sb-admin-2.min.js') }}"></script>
+    <script type="text/javascript">
+
+        var clock = $('#clock');
+        function time() {
+            var d = new Date();
+            var s = d.getSeconds();
+            var m = d.getMinutes();
+            var h = d.getHours();
+            clock.text(("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2));
+        }
+        setInterval(time, 1000);
+
+    </script>
 
     @stack('scriptother')
 

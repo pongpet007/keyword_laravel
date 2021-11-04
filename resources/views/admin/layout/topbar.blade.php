@@ -6,7 +6,7 @@
         <i class="fa fa-bars"></i>
     </button>
 
-
+    <div class="my-2"><h2 class="text-info"><?=date('d F Y') ?> <span id="clock"><?=date('H:i:s')?></span></h2></div>
     {{-- <!-- Topbar Search -->
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">

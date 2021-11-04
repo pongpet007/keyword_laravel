@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // $locale = App::currentLocale();
     // dd($locale);
-    return view('admin.page.home');
+    return view('admin.pages.home');
 });
 
 Route::get('/theme',function (){

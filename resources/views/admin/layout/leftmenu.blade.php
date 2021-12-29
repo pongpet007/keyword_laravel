@@ -1,9 +1,14 @@
+ @php
+     $secment1 = strtolower(request()->segment(1));
+ @endphp
  <!-- Sidebar -->
  <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
      <!-- Sidebar - Brand -->
-     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-         <div class="sidebar-brand-text mx-3">Admin Panel</div>
+     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
+         <div class="sidebar-brand-text mx-3">
+             <img src="{{ asset('assets_admin/logo.svg') }}" width="200" alt="" class="img-fluid">
+         </div>
      </a>
 
      <!-- Divider -->
@@ -16,90 +21,103 @@
              <span>Dashboard</span></a>
      </li>
 
+     @if (Auth::user()->level == 5)
+         <!-- Nav Item - Pages Collapse Menu -->
+         <li class="nav-item">
+             <a class="nav-link {{ $secment1 == 'user' || $secment1 == 'department' || $secment1 == 'documentgroup' ? '' : 'collapsed' }}"
+                 href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                 aria-controls="collapseOne">
+                 <i class="fas fa-fw fa-cog"></i>
+                 <span>Setting</span>
+             </a>
+             <div id="collapseOne"
+                 class="collapse  {{ $secment1 == 'user' || $secment1 == 'department' || $secment1 == 'documentgroup' ? 'show' : '' }}"
+                 aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                 <div class="bg-white py-2 collapse-inner rounded">
+                     <h6 class="collapse-header">Setting:</h6>
+                     <a class="collapse-item" href="{{ url('User') }}">User </a>
+                     <a class="collapse-item" href="{{ url('User') }}">Add Section , Item </a>
+                 </div>
+             </div>
+         </li>
+     @endif
 
      <!-- Nav Item - Pages Collapse Menu -->
      <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+         <a class="nav-link {{ $secment1 == 'user1' ? '' : 'collapsed' }}"
+             href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
              aria-controls="collapseTwo">
              <i class="fas fa-fw fa-cog"></i>
-             <span>General & Setting</span>
+             <span>Profile & Content page</span>
          </a>
-         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div id="collapseTwo"
+             class="collapse  {{ $secment1 == 'user1' ? 'show' : '' }}"
+             aria-labelledby="headingTwo" data-parent="#accordionSidebar">
              <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">General & Setting:</h6>
-                 <a class="collapse-item" href="{{ url('') }}">Setting</a>
-                 <a class="collapse-item" href="{{ url('') }}">Country</a>
+                 <h6 class="collapse-header">Profile :</h6>
                  <a class="collapse-item" href="{{ url('') }}">Company</a>
-                 <a class="collapse-item" href="{{ url('') }}">Manage Menu</a>
-                 <a class="collapse-item" href="{{ url('') }}">Manage Content</a>
-                 <a class="collapse-item" href="{{ url('') }}">Splash page</a>
-             </div>
-         </div>
-     </li>
-
-     <!-- Nav Item - Utilities Collapse Menu -->
-     <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-             aria-expanded="true" aria-controls="collapseUtilities">
-             <i class="fas fa-fw fa-cog"></i>
-             <span>Product & Promotion</span>
-         </a>
-         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-             <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">Product & Promotion:</h6>
-                 <a class="collapse-item" href="{{ url('') }}">Category</a>
-                 <a class="collapse-item" href="{{ url('') }}">Brand</a>
-                 <a class="collapse-item" href="{{ url('') }}">Products</a>
-                 <a class="collapse-item" href="{{ url('') }}">Promotion</a>
+                 <h6 class="collapse-header">Content page:</h6>
+                 <a class="collapse-item" href="{{ url('') }}">Home </a>
+                 <a class="collapse-item" href="{{ url('') }}">About us </a>
+                 <a class="collapse-item" href="{{ url('') }}">Contact us</a>
 
              </div>
          </div>
      </li>
 
-     <!-- Nav Item - Utilities Collapse Menu -->
-     <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFeture"
-             aria-expanded="true" aria-controls="collapseFeture">
-             <i class="fas fa-fw fa-cog"></i>
-             <span>Feature</span>
-         </a>
-         <div id="collapseFeture" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-             <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">Feature:</h6>
-                 <a class="collapse-item" href="{{ url('') }}">News</a>
-                 <a class="collapse-item" href="{{ url('') }}">Blog</a>
-                 <a class="collapse-item" href="{{ url('') }}">Ebook & Download</a>
-                 <a class="collapse-item" href="{{ url('') }}">Gallery</a>
-                 <a class="collapse-item" href="{{ url('') }}">Job</a>
-                 <a class="collapse-item" href="{{ url('') }}">Slide</a>
-                 <a class="collapse-item" href="{{ url('') }}">Youtube</a>
 
-             </div>
-         </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link {{ $secment1 == 'user1' ? '' : 'collapsed' }}"
+            href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+            aria-controls="collapseThree">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Category & Product</span>
+        </a>
+        <div id="collapseThree"
+            class="collapse  {{ $secment1 == 'user1' ? 'show' : '' }}"
+            aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Category & Product :</h6>
+                <a class="collapse-item" href="{{ url('') }}">Category</a>
+                <a class="collapse-item" href="{{ url('') }}">Product</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link {{ $secment1 == 'user1' ? '' : 'collapsed' }}"
+            href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true"
+            aria-controls="collapseFour">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Feture</span>
+        </a>
+        <div id="collapseFour"
+            class="collapse  {{ $secment1 == 'user1' ? 'show' : '' }}"
+            aria-labelledby="headingFour" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Feture :</h6>
+                <a class="collapse-item" href="{{ url('') }}">Gallery Group</a>
+                <a class="collapse-item" href="{{ url('') }}">Gallery</a>
+                <a class="collapse-item" href="{{ url('') }}">Blog</a>
+                <a class="collapse-item" href="{{ url('') }}">News</a>
+                <a class="collapse-item" href="{{ url('') }}">Youtube</a>
+                <a class="collapse-item" href="{{ url('') }}">Testimonial</a>
+            </div>
+        </div>
+    </li>
+
+     <li class="nav-item my-5">
+         <form method="POST" action="{{ route('logout') }}">
+             @csrf
+             <x-jet-dropdown-link href="{{ route('logout') }}" style="color:white !important" onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                 <i class="fas fa-sign-out-alt"></i>
+                 <span class="ml-1">logout</span>
+             </x-jet-dropdown-link>
+         </form>
      </li>
-
-     <!-- Nav Item - Utilities Collapse Menu -->
-     <li class="nav-item">
-         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCustomer"
-             aria-expanded="true" aria-controls="collapseCustomer">
-             <i class="fas fa-fw fa-cog"></i>
-             <span>For Customer</span>
-         </a>
-         <div id="collapseCustomer" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-             <div class="bg-white py-2 collapse-inner rounded">
-                 <h6 class="collapse-header">For Customer:</h6>
-                 <a class="collapse-item" href="{{ url('') }}">Subscription</a>
-                 <a class="collapse-item" href="{{ url('') }}">Quotation</a>
-             </div>
-         </div>
-     </li>
-
-
-
-
      <!-- Divider -->
      <hr class="sidebar-divider d-none d-md-block">
 

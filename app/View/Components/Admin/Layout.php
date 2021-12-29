@@ -3,6 +3,7 @@
 namespace App\View\Components\Admin;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\DB;
 
 class Layout extends Component
 {
@@ -13,8 +14,10 @@ class Layout extends Component
      */
     public function __construct()
     {
-        //
+
     }
+
+
 
     /**
      * Get the view / contents that represent the component.
@@ -23,6 +26,7 @@ class Layout extends Component
      */
     public function render()
     {
+        //$menugroups = $this->getGroup();
         return view('admin.layout.major');
     }
 }

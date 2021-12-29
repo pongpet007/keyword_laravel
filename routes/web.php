@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\UserAdminController;
+use App\Http\Controllers\HomeController;
+use League\CommonMark\Node\Block\Document;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,24 +19,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+// Route::get(
+//     '/theme',
+//     function () {
+//         return view("admin.theme");
+//     }
+// );
 
-    // $locale = App::currentLocale();
-    // dd($locale);
-    return view('admin.pages.home');
-})->name('home');
+// Route::get('Category/destroy/{id}', [CategoryController::class, "destroy"]);
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
-Route::get('/products',function(){
 
-    return view('admin.pages.products');
-})->name('products');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-Route::get('/theme',function (){
-    return view("admin.theme");
-}
-);
+    Route::get('/', [HomeController::class, "index"])->name('home');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    Route::resource('User', UserAdminController::class);
 
+    // Route::resource('Document', DocumentController::class);
+    // Route::get("/documentlist/{group_id}", [DocumentController::class, "index"]);
+    // Route::get("/documentlist/create/{group_id}", function ($group_id) {
+    //     $doc_id = DB::table('document')->insertGetId(
+    //         [
+    //             'doc_group_id' => $group_id,
+    //             'cby' => Auth::user()->name,
+    //             'cdate' => date('Y-m-d H:i:s'),
+    //             'udate' => date('Y-m-d H:i:s')
+    //         ]
+    //     );
+    //     return redirect("/Document/$doc_id/edit");
+    // });
+
+    // Route::post('Attachment/upload', [DocumentAttachmentController::class,"upload"])->name('upload');
+    // Route::get('downloadfile/{filepath}/{filename}', [DocumentAttachmentController::class,"download"])->name('download');
+    // Route::get('deleteFile/{attachment_id}',[DocumentAttachmentController::class,"deleteFile"])->name('deleteFile');
+
+
+    Route::get('dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

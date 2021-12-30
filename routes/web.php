@@ -4,8 +4,19 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-use App\Http\Controllers\UserAdminController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ContentPageController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GalleryGroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\UserAdminController;
+use App\Http\Controllers\YoutubeController;
+use App\Http\Controllers\ManageSectionController;
 use League\CommonMark\Node\Block\Document;
 
 /*
@@ -35,8 +46,21 @@ use League\CommonMark\Node\Block\Document;
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/', [HomeController::class, "index"])->name('home');
+    Route::resource('Blog', BlogController::class);
+    Route::resource('Category', CategoryController::class);
+    Route::resource('Company', CompanyController::class);
 
+    Route::resource('ContentPage', ContentPageController::class);
+    Route::get('Content/{page_id}',[ContentPageController::class,"index"]);
+    Route::resource('Gallery', GalleryController::class);
+    Route::resource('GalleryGroup', GalleryGroupController::class);
+    Route::resource('News', NewsController::class);
+    Route::resource('Product', ProductController::class);
+    Route::resource('Testimonial', TestimonialController::class);
+    Route::resource('Youtube', YoutubeController::class);
     Route::resource('User', UserAdminController::class);
+
+    Route::resource('managesection', ManageSectionController::class);
 
     // Route::resource('Document', DocumentController::class);
     // Route::get("/documentlist/{group_id}", [DocumentController::class, "index"]);
@@ -52,12 +76,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //     return redirect("/Document/$doc_id/edit");
     // });
 
-    // Route::post('Attachment/upload', [DocumentAttachmentController::class,"upload"])->name('upload');
-    // Route::get('downloadfile/{filepath}/{filename}', [DocumentAttachmentController::class,"download"])->name('download');
-    // Route::get('deleteFile/{attachment_id}',[DocumentAttachmentController::class,"deleteFile"])->name('deleteFile');
-
-
     Route::get('dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+
 });
